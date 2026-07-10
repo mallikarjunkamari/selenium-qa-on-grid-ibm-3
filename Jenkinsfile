@@ -14,7 +14,11 @@ pipeline {
         stage('Publish Report') {
             steps { publishHTML([reportDir: 'target/surefire-reports',
                                 reportFiles: 'index.html',
-                                reportName: 'Test Report']) }
+                                reportName: 'Test Report'
+                                keepAll: true,
+                                alwaysLinkToLastBuild: true,
+                                allowingMissing: false
+                                ]) }
         }
     }
     post { success { echo 'All tests green' }
